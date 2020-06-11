@@ -20,6 +20,7 @@ int main(int argc, char** argv){
     glutInitWindowSize(650, 650);
     glutCreateWindow("Torus");
     glOrtho(-100, 100, -100, 100, -100, 100);
+    glRotatef(60, 1, 0, 0);
 
     glutDisplayFunc(display);
     glutIdleFunc(display);
