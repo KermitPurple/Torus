@@ -31,8 +31,9 @@ void Torus::draw_cross_section(Coord position, double angle, double offset_angle
 Torus::Torus(){
     radius = 40;
     smaller_radius = 10;
-    rotation_speed = 0.1;
+    rotation_speed = 0.001;
     num_of_cross_sections = 30;
+    current_offset = 0;
 }
 
 void Torus::draw(){
@@ -54,4 +55,11 @@ void Torus::draw(){
         glEnd();
     }
     points.clear();
+}
+
+void Torus::update(){
+    current_offset += rotation_speed;
+    if(current_offset > 2 * M_PI){
+        current_offset = 0;
+    }
 }
