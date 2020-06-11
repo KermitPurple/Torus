@@ -9,7 +9,7 @@
 void Torus::draw_cross_section(Coord position, double angle, double offset_angle, int num_of_points){
     angle = -angle;
     glBegin(GL_LINE_STRIP);
-    for(double i = 0; i < 2 * M_PI; i += 2 * M_PI / num_of_points){
+    for(double i = 0; i <= 2 * M_PI; i += 2 * M_PI / num_of_points){
         Coord point(
                 cos(i + offset_angle) * smaller_radius,
                 0,
@@ -47,6 +47,6 @@ void Torus::draw(){
                 );
         glVertex3d(point.x, point.y, point.z);
         glEnd();
-        draw_cross_section(point, i, i, 6);
+        draw_cross_section(point, i, i, 3);
     }
 }
