@@ -18,6 +18,7 @@ public:
     Torus();
     void draw();
     void update();
+    void kbin(unsigned char key, int x, int y);
 };
 
 #endif

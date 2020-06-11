@@ -64,3 +64,26 @@ void Torus::update(){
         current_offset = 0;
     }
 }
+
+void Torus::kbin(unsigned char key, int x, int y){
+    switch(key){
+        case 'w':
+            glRotatef(1, 1, 0, 0);
+            break;
+        case 'a':
+            glRotatef(1, 0, 0, -1);
+            break;
+        case 's':
+            glRotatef(1, -1, 0, 0);
+            break;
+        case 'd':
+            glRotatef(1, 0, 0, 1);
+            break;
+        case 'q':
+            glRotatef(1, 0, 1, 0);
+            break;
+        case 'e':
+            glRotatef(1, 0, -1, 0);
+            break;
+    }
+}

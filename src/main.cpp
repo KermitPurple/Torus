@@ -11,29 +11,6 @@ void display(){
     glutSwapBuffers();
 }
 
-void kbin(unsigned char key, int x, int y){
-    switch(key){
-        case 'w':
-            glRotatef(1, 1, 0, 0);
-            break;
-        case 'a':
-            glRotatef(1, 0, 0, -1);
-            break;
-        case 's':
-            glRotatef(1, -1, 0, 0);
-            break;
-        case 'd':
-            glRotatef(1, 0, 0, 1);
-            break;
-        case 'q':
-            glRotatef(1, 0, 1, 0);
-            break;
-        case 'e':
-            glRotatef(1, 0, -1, 0);
-            break;
-    }
-}
-
 int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -45,7 +22,9 @@ int main(int argc, char** argv){
 
     glutDisplayFunc(display);
     glutIdleFunc(display);
-    glutKeyboardFunc(kbin);
+    glutKeyboardFunc([](unsigned char key, int x, int y){
+            torus.kbin(key, x, y);
+            });
 
     glutMainLoop();
 	return 0;
