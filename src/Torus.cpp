@@ -15,10 +15,6 @@ void Torus::draw_cross_section(Coord position, double angle, double offset_angle
                 0,
                 sin(i + offset_angle) * smaller_radius + position.z
                 );
-        // point.x = point.x * cos(angle) + point.y * sin(angle);
-        // point.y = point.x * -sin(angle) + point.y * cos(angle);
-        // point.x += position.x;
-        // point.y += position.y;
         double newx = point.x * cos(angle) + point.y * sin(angle) + position.x;
         double newy = point.x * -sin(angle) + point.y * cos(angle) + position.y;
         point.x = newx;
@@ -34,19 +30,16 @@ Torus::Torus(){
     radius = 40;
     smaller_radius = 10;
     rotation_speed = 0.1;
-    num_of_cross_sections = 20;
+    num_of_cross_sections = 30;
 }
 
 void Torus::draw(){
     for(double i = 0; i < 2 * M_PI; i += 2 * M_PI / num_of_cross_sections){
-        glBegin(GL_POINTS);
         Coord point(
                 cos(i) * radius, 
                 sin(i) * radius,
                 0
                 );
-        glVertex3d(point.x, point.y, point.z);
-        glEnd();
         draw_cross_section(point, i, i, 3);
     }
 }
