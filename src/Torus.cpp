@@ -26,15 +26,19 @@ void Torus::draw_cross_section(Coord position, double angle, double offset_angle
     points.push_back(new_vec);
 }
 
-// public
-
-Torus::Torus(){
+void Torus::reset(){
     radius = 75;
     smaller_radius = 25;
     rotation_speed = 0.003;
-    num_of_cross_sections = 30;
     current_offset = 0;
+    num_of_cross_sections = 30;
     num_of_points = 4;
+}
+
+// public
+
+Torus::Torus(){
+    reset();
 }
 
 void Torus::draw(){
@@ -121,6 +125,11 @@ void Torus::kbin(unsigned char key, int x, int y){
         case 'l':
             smaller_radius++;
             break;
+        case 'r':
+            reset();
+            break;
+        case '\033':
+            exit(0);
     }
 }
 
@@ -136,4 +145,6 @@ void Torus::print_controls(){
     std::cout << ". : increase radius" << std::endl;
     std::cout << "k : decrease inner radius" << std::endl;
     std::cout << "l : increase inner radius" << std::endl;
+    std::cout << "r : reset" << std::endl;
+    std::cout << "esc : quit" << std::endl;
 }

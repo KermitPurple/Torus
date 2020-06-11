@@ -12,8 +12,9 @@ private:
     double current_offset;
     int num_of_cross_sections;
     int num_of_points;
-    void draw_cross_section(Coord position, double angle, double offset_angle);
     std::vector<std::vector<Coord>> points;
+    void draw_cross_section(Coord position, double angle, double offset_angle);
+    void reset();
 public:
     Torus();
     void draw();
