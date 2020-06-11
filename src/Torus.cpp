@@ -29,9 +29,9 @@ void Torus::draw_cross_section(Coord position, double angle, double offset_angle
 // public
 
 Torus::Torus(){
-    radius = 40;
-    smaller_radius = 10;
-    rotation_speed = 0.001;
+    radius = 75;
+    smaller_radius = 25;
+    rotation_speed = 0.003;
     num_of_cross_sections = 30;
     current_offset = 0;
     num_of_points = 4;
@@ -101,6 +101,27 @@ void Torus::kbin(unsigned char key, int x, int y){
             break;
         case '+':
             rotation_speed += 0.0005;
+            break;
+        case '<':
+            num_of_cross_sections -= 1;
+            if(num_of_cross_sections < 1){
+                num_of_cross_sections = 1;
+            }
+            break;
+        case '>':
+            num_of_cross_sections += 1;
+            break;
+        case ',':
+            radius--;
+            break;
+        case '.':
+            radius++;
+            break;
+        case 'k':
+            smaller_radius--;
+            break;
+        case 'l':
+            smaller_radius++;
             break;
     }
 }
