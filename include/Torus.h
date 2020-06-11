@@ -19,6 +19,7 @@ public:
     void draw();
     void update();
     void kbin(unsigned char key, int x, int y);
+    static void print_controls();
 };
 
 #endif

@@ -68,33 +68,31 @@ void Torus::update(){
 void Torus::kbin(unsigned char key, int x, int y){
     switch(key){
         case 'w':
-            glRotatef(1, 1, 0, 0);
+            glRotatef(2, 1, 0, 0);
             break;
         case 'a':
-            glRotatef(1, 0, 0, -1);
+            glRotatef(2, 0, 0, -1);
             break;
         case 's':
-            glRotatef(1, -1, 0, 0);
+            glRotatef(2, -1, 0, 0);
             break;
         case 'd':
-            glRotatef(1, 0, 0, 1);
+            glRotatef(2, 0, 0, 1);
             break;
         case 'q':
-            glRotatef(1, 0, 1, 0);
+            glRotatef(2, 0, 1, 0);
             break;
         case 'e':
-            glRotatef(1, 0, -1, 0);
+            glRotatef(2, 0, -1, 0);
             break;
-        case '1':
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-        case '6':
-        case '7':
-        case '8':
-        case '9':
-            num_of_points = static_cast<int>(key) - 48;
+        case 'n':
+            num_of_points--;
+            if(num_of_points < 1){
+                num_of_points = 1;
+            }
+            break;
+        case 'm':
+            num_of_points++;
             break;
         case '-':
             rotation_speed -= 0.0005;
@@ -103,13 +101,13 @@ void Torus::kbin(unsigned char key, int x, int y){
             rotation_speed += 0.0005;
             break;
         case '<':
-            num_of_cross_sections -= 1;
+            num_of_cross_sections--;
             if(num_of_cross_sections < 1){
                 num_of_cross_sections = 1;
             }
             break;
         case '>':
-            num_of_cross_sections += 1;
+            num_of_cross_sections++;
             break;
         case ',':
             radius--;
@@ -124,4 +122,18 @@ void Torus::kbin(unsigned char key, int x, int y){
             smaller_radius++;
             break;
     }
+}
+
+void Torus::print_controls(){
+    std::cout << "w, a, s, d, q, e : rotate" << std::endl;
+    std::cout << "n : reduce number of points per section" << std::endl;
+    std::cout << "m : increase number of points per section" << std::endl;
+    std::cout << "- : reduce rotation speed" << std::endl;
+    std::cout << "+ : increase rotation speed" << std::endl;
+    std::cout << "< : decrease number of cross sections" << std::endl;
+    std::cout << "> : increase number of cross sections" << std::endl;
+    std::cout << ", : decrease radius" << std::endl;
+    std::cout << ". : increase radius" << std::endl;
+    std::cout << "k : decrease inner radius" << std::endl;
+    std::cout << "l : increase inner radius" << std::endl;
 }

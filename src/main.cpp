@@ -20,6 +20,8 @@ int main(int argc, char** argv){
     glOrtho(-100, 100, -100, 100, -100, 100);
     glRotatef(60, 1, 0, 0);
 
+    Torus::print_controls();
+
     glutDisplayFunc(display);
     glutIdleFunc(display);
     glutKeyboardFunc([](unsigned char key, int x, int y){
