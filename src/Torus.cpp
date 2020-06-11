@@ -85,5 +85,22 @@ void Torus::kbin(unsigned char key, int x, int y){
         case 'e':
             glRotatef(1, 0, -1, 0);
             break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            num_of_points = static_cast<int>(key) - 48;
+            break;
+        case '-':
+            rotation_speed -= 0.0005;
+            break;
+        case '+':
+            rotation_speed += 0.0005;
+            break;
     }
 }
