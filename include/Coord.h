@@ -3,8 +3,8 @@
 
 class Coord{
 private:
-    double x, y, z;
 public:
+    double x, y, z;
     Coord();
     Coord(double xx, double yy, double zz);
 };
