@@ -1,0 +1,14 @@
+# Torus
+- w, a, s, d, q, e : rotate
+- n : reduce number of points per section
+- m : increase number of points per section
+- - : reduce rotation speed
+- + : increase rotation speed
+- < : decrease number of cross sections
+- > : increase number of cross sections
+- , : decrease radius
+- . : increase radius
+- k : decrease inner radius
+- l : increase inner radius
+- r : reset
+- esc : quit
