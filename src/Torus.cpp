@@ -43,7 +43,7 @@ void Torus::draw(){
                 sin(i) * radius,
                 0
                 );
-        draw_cross_section(point, i, 0, 5);
+        draw_cross_section(point, i, i, 3);
     }
     for(int i = 0; i < points[0].size(); i++){
         glBegin(GL_LINE_STRIP);
