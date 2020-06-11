@@ -6,6 +6,7 @@ Torus torus;
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    torus.draw();
     glutSwapBuffers();
 }
 
@@ -18,6 +19,7 @@ int main(int argc, char** argv){
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(650, 650);
     glutCreateWindow("Torus");
+    glOrtho(-100, 100, -100, 100, -100, 100);
 
     glutDisplayFunc(display);
     glutIdleFunc(display);
