@@ -2,14 +2,6 @@
 #include<GL/glut.h>
 #include<Torus.h>
 
-Torus torus;
-
-void display(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    torus.draw();
-    torus.update();
-    glutSwapBuffers();
-}
 
 int main(int argc, char** argv){
     glutInit(&argc, argv);
@@ -20,13 +12,12 @@ int main(int argc, char** argv){
     glOrtho(-100, 100, -100, 100, -100, 100);
     glRotatef(60, 1, 0, 0);
 
-    Torus::print_controls();
+    Torus torus;
+    torus.print_controls();
 
-    glutDisplayFunc(display);
-    glutIdleFunc(display);
-    glutKeyboardFunc([](unsigned char key, int x, int y){
-            torus.kbin(key, x, y);
-            });
+    glutDisplayFunc(torus.display);
+    glutIdleFunc(torus.display);
+    glutKeyboardFunc(torus.kbin);
 
     glutMainLoop();
 	return 0;

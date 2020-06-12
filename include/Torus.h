@@ -6,6 +6,7 @@
 
 class Torus{
 private:
+    static Torus* current_instance;
     double radius;
     double smaller_radius;
     double rotation_speed;
@@ -19,8 +20,9 @@ public:
     Torus();
     void draw();
     void update();
-    void kbin(unsigned char key, int x, int y);
+    static void kbin(unsigned char key, int x, int y);
     static void print_controls();
+    static void display();
 };
 
 #endif

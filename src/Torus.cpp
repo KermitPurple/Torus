@@ -6,6 +6,8 @@
 
 // private
 
+Torus* Torus::current_instance;
+
 void Torus::draw_cross_section(Coord position, double angle, double offset_angle){
     std::vector<Coord> new_vec;
     glBegin(GL_LINE_STRIP);
@@ -38,6 +40,7 @@ void Torus::reset(){
 // public
 
 Torus::Torus(){
+    current_instance = this;
     reset();
 }
 
@@ -90,43 +93,43 @@ void Torus::kbin(unsigned char key, int x, int y){
             glRotatef(2, 0, -1, 0);
             break;
         case 'n':
-            num_of_points--;
-            if(num_of_points < 1){
-                num_of_points = 1;
+            current_instance->num_of_points--;
+            if(current_instance->num_of_points < 1){
+                current_instance->num_of_points = 1;
             }
             break;
         case 'm':
-            num_of_points++;
+            current_instance->num_of_points++;
             break;
         case '-':
-            rotation_speed -= 0.0005;
+            current_instance->rotation_speed -= 0.0005;
             break;
         case '+':
-            rotation_speed += 0.0005;
+            current_instance->rotation_speed += 0.0005;
             break;
         case '<':
-            num_of_cross_sections--;
-            if(num_of_cross_sections < 1){
-                num_of_cross_sections = 1;
+            current_instance->num_of_cross_sections--;
+            if(current_instance->num_of_cross_sections < 1){
+                current_instance->num_of_cross_sections = 1;
             }
             break;
         case '>':
-            num_of_cross_sections++;
+            current_instance->num_of_cross_sections++;
             break;
         case ',':
-            radius--;
+            current_instance->radius--;
             break;
         case '.':
-            radius++;
+            current_instance->radius++;
             break;
         case 'k':
-            smaller_radius--;
+            current_instance->smaller_radius--;
             break;
         case 'l':
-            smaller_radius++;
+            current_instance->smaller_radius++;
             break;
         case 'r':
-            reset();
+            current_instance->reset();
             break;
         case '\033':
             exit(0);
@@ -147,4 +150,11 @@ void Torus::print_controls(){
     std::cout << "l : increase inner radius" << std::endl;
     std::cout << "r : reset" << std::endl;
     std::cout << "esc : quit" << std::endl;
+}
+
+void Torus::display(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    current_instance->draw();
+    current_instance->update();
+    glutSwapBuffers();
 }
