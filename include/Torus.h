@@ -16,10 +16,10 @@ private:
     std::vector<std::vector<Coord>> points;
     void draw_cross_section(Coord position, double angle, double offset_angle);
     void reset();
-public:
-    Torus();
     void draw();
     void update();
+public:
+    Torus();
     static void kbin(unsigned char key, int x, int y);
     static void print_controls();
     static void display();

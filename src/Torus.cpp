@@ -37,13 +37,6 @@ void Torus::reset(){
     num_of_points = 4;
 }
 
-// public
-
-Torus::Torus(){
-    current_instance = this;
-    reset();
-}
-
 void Torus::draw(){
     for(double i = 0; i < 2 * M_PI; i += 2 * M_PI / num_of_cross_sections){
         Coord point(
@@ -72,6 +65,12 @@ void Torus::update(){
     }
 }
 
+// public
+
+Torus::Torus(){
+    current_instance = this;
+    reset();
+}
 void Torus::kbin(unsigned char key, int x, int y){
     switch(key){
         case 'w':
