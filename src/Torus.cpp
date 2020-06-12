@@ -11,16 +11,18 @@ Torus* Torus::current_instance;
 void Torus::draw_cross_section(Coord position, double angle, double offset_angle){
     std::vector<Coord> new_vec;
     glBegin(GL_LINE_STRIP);
-    for(double i = 0; i <= 2 * M_PI; i += 2 * M_PI / num_of_points){
-        Coord point(
+    for(double i = 0; i <= 2 * M_PI; i += 2 * M_PI / num_of_points){// Create ring of points around given position
+        Coord point( // create point [smaller_radius] away from the given position
                 cos(i + offset_angle) * smaller_radius,
                 0,
                 sin(i + offset_angle) * smaller_radius + position.z
                 );
-        double newx = point.x * cos(angle) + point.y * sin(angle) + position.x;
+        // Rotate shape to be facing the same direction as the initial angle
+        double newx = point.x * cos(angle) + point.y * sin(angle) + position.x; 
         double newy = point.x * -sin(angle) + point.y * cos(angle) + position.y;
         point.x = newx;
         point.y = newy;
+        // Draw and add to vector
         glVertex3d(point.x, point.y, point.z);
         new_vec.push_back(point);
     }
@@ -38,7 +40,7 @@ void Torus::reset(){
 }
 
 void Torus::draw(){
-    for(double i = 0; i < 2 * M_PI; i += 2 * M_PI / num_of_cross_sections){
+    for(double i = 0; i < 2 * M_PI; i += 2 * M_PI / num_of_cross_sections){// Calculate ring of points around origin
         Coord point(
                 cos(i) * radius, 
                 sin(i) * radius,
@@ -46,7 +48,7 @@ void Torus::draw(){
                 );
         draw_cross_section(point, -i, i + current_offset);
     }
-    for(int i = 0; i < points[0].size(); i++){
+    for(int i = 0; i < points[0].size(); i++){// Connect rings of points
         glBegin(GL_LINE_STRIP);
         for(auto v: points){
             glVertex3d(v[i].x, v[i].y, v[i].z);
@@ -55,10 +57,10 @@ void Torus::draw(){
         glVertex3d(v[i].x, v[i].y, v[i].z);
         glEnd();
     }
-    points.clear();
+    points.clear();// Reset Vector
 }
 
-void Torus::update(){
+void Torus::update(){// Increment current_offset by rotation_speed
     current_offset += rotation_speed;
     if(current_offset > 2 * M_PI){
         current_offset = 0;
